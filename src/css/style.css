@@ -90,7 +90,7 @@ p {
   margin-top: -1.3em;
 }
 
-.logo--square > div {
+.logo--square>div {
   margin-top: -1.7em;
 }
 
@@ -261,3 +261,16 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+/* Start cart total display */
+.cart-total {
+  margin-top: 1em;
+  display: none;
+  font-style: italic;
+}
+
+.cart-total-open {
+  display: block;
+}
+
+/* End cart total display */
