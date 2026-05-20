@@ -1,4 +1,8 @@
 import { getLocalStorage } from "./utils.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
+
+loadHeaderFooter();
+
 const cartTotalDisplay = document.querySelector(".cart-total");
 const cartTotalAmount = document.querySelector("#cart-total-amount");
 
