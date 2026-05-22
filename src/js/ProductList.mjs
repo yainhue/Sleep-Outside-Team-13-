@@ -1,36 +1,33 @@
 import { renderListWithTemplate } from './utils.mjs';
 
 function productCardTemplate(product) {
+    // Vite strips away the '/public' part of the path automatically.
+    // We clean the path to start directly from '/images/'
+    const imageSrc = product.Image.replace('../', '/').replace('src/public/', '/');
+
     return `<li class="product-card">
             <a href="product_pages/?product=${product.Id}">
               <img
-                src="${product.Image}"
+                src="${imageSrc}"
                 alt="Image of ${product.Name}"
               />
               <h3 class="card__brand">${product.Brand.Name}</h3>
               <h2 class="card__name">${product.NameWithoutBrand}</h2>
-              <p class="product-card__price">${product.ListPrice}</p>
+              <p class="product-card__price">$${product.ListPrice}</p>
             </a>
           </li>`;
 }
 
 export default class ProductList {
     constructor(category, dataSource, listElement) {
-        // You passed in this information to make the class as reusable as possible.
-        // Being able to define these things when you use the class will make it very flexible
         this.category = category;
         this.dataSource = dataSource;
         this.listElement = listElement;
     }
 
     async init() {
-        // the dataSource will return a Promise...so you can use await to resolve it.
         const list = await this.dataSource.getData();
-
-        // clear out the list element before we add to it.
         this.listElement.innerHTML = "";
-
-        // next, render the list:
         renderListWithTemplate(productCardTemplate, this.listElement, list, "beforeend", true);
     }
-};
+}
