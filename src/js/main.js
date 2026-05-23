@@ -1,17 +1,12 @@
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
-import { loadHeaderFooter } from "./utils.mjs";
 
-loadHeaderFooter();
+// 1. Initialize data manager targeting our tents JSON data
+const dataSource = new ProductData("tents");
 
-console.log("main.js loaded");
-
+// 2. Target the HTML list element from your home page template layout
 const listElement = document.querySelector(".product-list");
-const productList = new ProductList(
-  "tents",
-  new ProductData("tents"),
-  listElement,
-);
 
+// 3. Create our dynamic list manager instance and launch it
+const productList = new ProductList("tents", dataSource, listElement);
 productList.init();
-console.log("productList initialized");
