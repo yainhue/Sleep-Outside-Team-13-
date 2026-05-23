@@ -11,4 +11,3 @@ console.log("productID:", productID);
 
 const product = new ProductDetails(productID, dataSource);
 product.init();
-

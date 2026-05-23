@@ -24,7 +24,7 @@ export default class ProductDetails {
   addProductToCart() {
     const cartItems = getLocalStorage("so-cart") || [];
     const quantities = getLocalStorage("qty-cart") || [];
-    if (!cartItems.contains(this.product)) {
+    if (!cartItems.some(item => item.Id === this.product.Id)) {
       console.log("Adding product to cart:", this.product);
       cartItems.push(this.product);
       quantities.push(this.product.Id, 1);
@@ -32,11 +32,11 @@ export default class ProductDetails {
       setLocalStorage("qty-cart", quantities);
     }
     else {
-      // aca te quedaste, terminar esta funcion.. calculo raro de 2 + 1? mejor algo mejor....
       console.log("Product already in cart:", this.product);
       const index = cartItems.findIndex(item => item.Id === this.product.Id);
+      // The quantities array stores pairs of product ID and quantity, so we find the index of the product ID and then update the quantity at the next index.
       if (index !== -1) {
-        quantities[index * 2 + 1] += 1; // Increment quantity for the product
+        quantities[index * 2 + 1] += 1;
         setLocalStorage("qty-cart", quantities);
       }
     }
