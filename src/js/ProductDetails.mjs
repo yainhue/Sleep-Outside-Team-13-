@@ -22,26 +22,33 @@ export default class ProductDetails {
   }
 
   addProductToCart() {
+
+    // Get the current cart items from local storage
     const cartItems = getLocalStorage("so-cart") || [];
-    const quantities = getLocalStorage("qty-cart") || [];
-    if (!cartItems.some(item => item.Id === this.product.Id)) {
+
+    // Check if the product is already in the cart by finding it in the cartItems array
+    const productInCart = cartItems.find(item => item.Id === this.product.Id);
+
+    // If the product is not already in the cart...
+    if (!productInCart) {
+
+      // Add the product to the cart with a quantity of 1
       console.log("Adding product to cart:", this.product);
-      cartItems.push(this.product);
-      quantities.push(this.product.Id, 1);
-      setLocalStorage("so-cart", cartItems);
-      setLocalStorage("qty-cart", quantities);
+      cartItems.push({ ...this.product, qty: 1 });
+
     }
+
+    // If the product is already in the cart...
     else {
+
+      // update the quantity of the product in the cart by incrementing it by 1
       console.log("Product already in cart:", this.product);
-      const index = cartItems.findIndex(item => item.Id === this.product.Id);
-      // The quantities array stores pairs of product ID and quantity, so we find the index of the product ID and then update the quantity at the next index.
-      if (index !== -1) {
-        quantities[index * 2 + 1] += 1;
-        setLocalStorage("qty-cart", quantities);
-      }
+      productInCart.qty += 1;
+
     }
 
-
+    // Save the updated cart items to local storage
+    setLocalStorage("so-cart", cartItems);
   }
 
   renderProductDetails() {

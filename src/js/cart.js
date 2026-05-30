@@ -15,24 +15,16 @@ function renderCartContents() {
   // add up the total price of the items in the cart and display it
   cartTotalDisplay.classList.add("cart-total-open");
   let cartTotalCounter = 0;
-  cartItems.forEach((item) => {
-    cartTotalCounter += item.FinalPrice;
+  cartItems.forEach(item => {
+
+    // multiply the price of each item by its quantity and add it to the total counter
+    cartTotalCounter += item.FinalPrice * item.qty;
+
   });
   cartTotalAmount.textContent = cartTotalCounter.toFixed(2);
 }
 
-function cartItemTemplate(item, quantities) {
-
-  const cartItems = getLocalStorage("so-cart");
-  const index = cartItems.findIndex(item => item.Id === this.product.Id);
-  const qty = 1
-
-  // The quantities array stores pairs of product ID and quantity, so we find the index of the product ID and then update the quantity at the next index.
-  if (index !== -1) {
-    qty = quantities[index * 2 + 1] += 1;
-
-  }
-
+function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
@@ -52,5 +44,3 @@ function cartItemTemplate(item, quantities) {
 }
 
 renderCartContents();
-
-// <p class="cart-card__quantity">qty: ${quantities[item.Id * 2 + 1] || 1}</p>
