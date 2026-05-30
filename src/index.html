@@ -1,69 +1,77 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sleep Outside | Home</title>
-    <link rel="stylesheet" href="/css/style.css" />
-    <script src="js/main.js" type="module"></script>
-  </head>
 
-  <body>
-    <header class="divider" id="header"></header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sleep Outside | Home</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="js/main.js" type="module"></script>
+</head>
 
-    <main class="divider">
-      <div class="hero">
-        <img
-          src="/images/banner-sm.jpg"
-          srcset="images/banner-sm.jpg 500w, images/banner.jpg"
-          alt="image of a high mountain lake"
-        />
-        <div class="logo logo--square">
-          <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
-          <div>Sleep<span class="highlight">Outside</span></div>
+<body>
+  <header class="divider" id="header"></header>
+
+  <main class="divider">
+    <div class="hero">
+      <img src="/images/banner-sm.jpg" srcset="images/banner-sm.jpg 500w, images/banner.jpg"
+        alt="image of a high mountain lake" />
+      <div class="logo logo--square">
+        <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
+        <div>Sleep<span class="highlight">Outside</span></div>
+      </div>
+      <div class="mission">
+        <p>
+          Our mission is to provide you with everything you need to sleep
+          outside comfortably at an affordable price.
+        </p>
+      </div>
+    </div>
+
+    <section class="products">
+      <h2>Categories</h2>
+      <div id="categories-flex">
+        <div>
+          <a href="product_listing/index?category=tents">
+            <img src="/images/category-tents.svg" alt="Tents" />
+            <p>Tents</p>
+          </a>
         </div>
-        <div class="mission">
-          <p>
-            Our mission is to provide you with everything you need to sleep
-            outside comfortably at an affordable price.
-          </p>
+        <div>
+          <a href="product_listing/index?category=backpacks">
+            <img src="/images/category-backpacks.svg" alt="Backpacks" />
+            <p>Backpacks</p>
+          </a>
+        </div>
+        <div>
+          <a href="product_listing/index?category=sleeping-bags">
+            <img src="/images/category-sleepingbags.svg" alt="Sleeping Bags" />
+            <p>Sleeping Bags</p>
+          </a>
+        </div>
+        <div>
+          <a href="product_listing/index?category=hammocks">
+            <img src="/images/category-hammocks.svg" alt="Hammocks" />
+            <p>Hammocks</p>
+          </a>
         </div>
       </div>
+    </section>
 
-      <section class="products">
-        <h2>Categories</h2>
-        <div id="categories-flex">
-          <div>
-            <a href="product_listing/index?category=tents">
-              <img src="/images/category-tents.svg" alt="Tents" />
-              <p>Tents</p>
-            </a>
-          </div>
-          <div>
-            <a href="product_listing/index?category=backpacks">
-              <img src="/images/category-backpacks.svg" alt="Backpacks" />
-              <p>Backpacks</p>
-            </a>
-          </div>
-          <div>
-            <a href="product_listing/index?category=sleeping-bags">
-              <img
-                src="/images/category-sleepingbags.svg"
-                alt="Sleeping Bags"
-              />
-              <p>Sleeping Bags</p>
-            </a>
-          </div>
-          <div>
-            <a href="product_listing/index?category=hammocks">
-              <img src="/images/category-hammocks.svg" alt="Hammocks" />
-              <p>Hammocks</p>
-            </a>
-          </div>
-        </div>
-      </section>
-    </main>
+    <!-- Custom Trello Task: Newsletter Sign Up Box -->
+    <section class="newsletter-signup">
+      <h3>Join Our Community!</h3>
+      <p>Sign up for our newsletter to receive exclusive outdoor gear discounts, tips, and event updates.</p>
+      <form id="newsletter-form">
+        <input type="email" id="newsletter-email" placeholder="Enter your email address" required />
+        <button type="submit">Subscribe Now</button>
+      </form>
+      <div id="newsletter-message"></div>
+    </section>
 
-    <footer id="footer"></footer>
-  </body>
+  </main>
+
+  <footer id="footer"></footer>
+</body>
+
 </html>

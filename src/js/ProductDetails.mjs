@@ -10,7 +10,6 @@ export default class ProductDetails {
 
   async init() {
     // use the datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
-    console.log("Finding product with ID:", this.productId);
     this.product = await this.dataSource.findProductById(this.productId);
     // the product details are needed before rendering the HTML
     this.renderProductDetails();
@@ -23,25 +22,8 @@ export default class ProductDetails {
 
   addProductToCart() {
     const cartItems = getLocalStorage("so-cart") || [];
-    const quantities = getLocalStorage("qty-cart") || [];
-    if (!cartItems.some(item => item.Id === this.product.Id)) {
-      console.log("Adding product to cart:", this.product);
-      cartItems.push(this.product);
-      quantities.push(this.product.Id, 1);
-      setLocalStorage("so-cart", cartItems);
-      setLocalStorage("qty-cart", quantities);
-    }
-    else {
-      console.log("Product already in cart:", this.product);
-      const index = cartItems.findIndex(item => item.Id === this.product.Id);
-      // The quantities array stores pairs of product ID and quantity, so we find the index of the product ID and then update the quantity at the next index.
-      if (index !== -1) {
-        quantities[index * 2 + 1] += 1;
-        setLocalStorage("qty-cart", quantities);
-      }
-    }
-
-
+    cartItems.push(this.product);
+    setLocalStorage("so-cart", cartItems);
   }
 
   renderProductDetails() {
@@ -84,5 +66,5 @@ function productDetailsTemplate(product) {
 //     </p>
 //     <div class="product-detail__add">
 //       <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
-//     </div></section>`;;
+//     </div></section>`;
 // }

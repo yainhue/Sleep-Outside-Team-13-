@@ -90,7 +90,7 @@ p {
   margin-top: -1.3em;
 }
 
-.logo--square > div {
+.logo--square>div {
   margin-top: -1.7em;
 }
 
@@ -300,3 +300,64 @@ footer {
 }
 
 /* End cart total display */
+/* =========================================================================
+   CUSTOM TRELLO TASK: NEWSLETTER SIGNUP STYLES
+   ========================================================================= */
+.newsletter-signup {
+  background-color: #f4f4f4;
+  padding: 30px;
+  text-align: center;
+  border-radius: 8px;
+  margin: 40px auto;
+  max-width: 500px;
+  border: 1px solid #e0e0e0;
+}
+
+.newsletter-signup h3 {
+  color: #333;
+  margin-top: 0;
+}
+
+.newsletter-signup p {
+  color: #666;
+  font-size: 0.95em;
+  margin-bottom: 20px;
+}
+
+#newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+#newsletter-email {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+#newsletter-form button {
+  background-color: #305736;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s;
+}
+
+#newsletter-form button:hover {
+  background-color: #244229;
+}
+
+#newsletter-message {
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 0.95em;
+  display: none;
+}
