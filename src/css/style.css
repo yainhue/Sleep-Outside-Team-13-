@@ -94,6 +94,32 @@ p {
   margin-top: -1.7em;
 }
 
+/* Start categories display  */
+
+#categories-flex {
+  display: flex;
+  justify-content: center;
+  gap: 3em;
+  padding: 1em;
+}
+
+#categories-flex div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#categories-flex img {
+  width: 70px;
+  height: auto;
+}
+
+#categories-flex p {
+  padding: 0.5em;
+}
+
+/* End categories display */
+
 /* utility classes */
 .highlight {
   color: var(--tertiary-color);
@@ -383,3 +409,16 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+/* Start cart total display */
+.cart-total {
+  margin-top: 1em;
+  display: none;
+  font-style: italic;
+}
+
+.cart-total-open {
+  display: block;
+}
+
+/* End cart total display */
