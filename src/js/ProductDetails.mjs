@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
 
 export default class ProductDetails {
 
@@ -22,8 +22,20 @@ export default class ProductDetails {
 
   addProductToCart() {
     const cartItems = getLocalStorage("so-cart") || [];
-    cartItems.push(this.product);
+
+    const existingProduct = cartItems.find(
+      (item) => item.Id === this.product.Id
+    );
+
+    if (existingProduct) {
+      existingProduct.Qty += 1;
+    } else {
+      this.product.Qty = 1;
+      cartItems.push(this.product);
+    }
+
     setLocalStorage("so-cart", cartItems);
+    updateCartCount();
   }
 
   renderProductDetails() {
@@ -39,28 +51,32 @@ function productDetailsTemplate(product) {
   productImage.src = product.Image;
   productImage.alt = product.NameWithoutBrand;
 
-  document.getElementById('productPrice').textContent = product.FinalPrice;
+  document.getElementById('productPrice').innerHTML = priceTemplate(product);
   document.getElementById('productColor').textContent = product.Colors[0].ColorName;
   document.getElementById('productDesc').innerHTML = product.DescriptionHtmlSimple;
 
   document.getElementById('addToCart').dataset.id = product.Id;
 }
 
-// ************* Alternative Display Product Details Method *******************
-// function productDetailsTemplate(product) {
-//   return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
-//     <h2 class="divider">${product.NameWithoutBrand}</h2>
-//     <img
-//       class="divider"
-//       src="${product.Image}"
-//       alt="${product.NameWithoutBrand}"
-//     />
-//     <p class="product-card__price">$${product.FinalPrice}</p>
-//     <p class="product__color">${product.Colors[0].ColorName}</p>
-//     <p class="product__description">
-//     ${product.DescriptionHtmlSimple}
-//     </p>
-//     <div class="product-detail__add">
-//       <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
-//     </div></section>`;
-// }
+function priceTemplate(product) {
+  if (product.FinalPrice < product.SuggestedRetailPrice) {
+
+    const discountPercent = Math.round(
+      ((product.SuggestedRetailPrice - product.FinalPrice) /
+      product.SuggestedRetailPrice) * 100
+    );
+
+    return `
+      <p class="price-info"> 
+        <span class="old-price">$${product.SuggestedRetailPrice}</span>
+        <span class="new-price">$${product.FinalPrice}</span>
+      </p>
+
+       <span class="discount-info">Save ${discountPercent}%</span>
+    `;
+  }
+
+  return `
+    <span class="new-price">$${product.FinalPrice}</span>
+  `;
+}
