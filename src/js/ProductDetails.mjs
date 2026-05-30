@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
 
 export default class ProductDetails {
 
@@ -23,25 +23,8 @@ export default class ProductDetails {
 
   addProductToCart() {
     const cartItems = getLocalStorage("so-cart") || [];
-    const quantities = getLocalStorage("qty-cart") || [];
-    if (!cartItems.some(item => item.Id === this.product.Id)) {
-      console.log("Adding product to cart:", this.product);
-      cartItems.push(this.product);
-      quantities.push(this.product.Id, 1);
-      setLocalStorage("so-cart", cartItems);
-      setLocalStorage("qty-cart", quantities);
-    }
-    else {
-      console.log("Product already in cart:", this.product);
-      const index = cartItems.findIndex(item => item.Id === this.product.Id);
-      // The quantities array stores pairs of product ID and quantity, so we find the index of the product ID and then update the quantity at the next index.
-      if (index !== -1) {
-        quantities[index * 2 + 1] += 1;
-        setLocalStorage("qty-cart", quantities);
-      }
-    }
-
-
+    cartItems.push(this.product);
+    setLocalStorage("so-cart", cartItems);
   }
 
   renderProductDetails() {
@@ -57,13 +40,10 @@ function productDetailsTemplate(product) {
   const productImage = document.querySelector("#p-image");
   productImage.src = product.Images.PrimaryExtraLarge;
   productImage.alt = product.NameWithoutBrand;
-  const euroPrice = new Intl.NumberFormat('de-DE',
-    {
-      style: 'currency', currency: 'EUR',
-    }).format(Number(product.FinalPrice) * 0.85);
-  document.querySelector("#p-price").textContent = `${euroPrice}`;
-  document.querySelector("#p-color").textContent = product.Colors[0].ColorName;
-  document.querySelector("#p-description").innerHTML = product.DescriptionHtmlSimple;
+
+  document.getElementById('productPrice').textContent = product.FinalPrice;
+  document.getElementById('productColor').textContent = product.Colors[0].ColorName;
+  document.getElementById('productDesc').innerHTML = product.DescriptionHtmlSimple;
 
   document.querySelector("#add-to-cart").dataset.id = product.Id;
 }
@@ -84,5 +64,5 @@ function productDetailsTemplate(product) {
 //     </p>
 //     <div class="product-detail__add">
 //       <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
-//     </div></section>`;;
+//     </div></section>`;
 // }

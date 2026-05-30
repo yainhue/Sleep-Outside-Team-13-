@@ -157,6 +157,33 @@ button {
   fill: gray;
 }
 
+.cart a {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-count {
+  position: absolute;
+
+  top: -8px;
+  right: -10px;
+
+  background-color: #f4b26b;
+  color: purple;
+
+  border-radius: 50%;
+
+  min-width: 20px;
+  height: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
 /* End cart icon styles */
 
 .mission {
@@ -201,8 +228,14 @@ button {
   padding: 0.5em;
   border: 1px solid var(--light-grey);
   max-width: 250px;
+  position: relative;
 }
 
+.product-card img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
 .product-card h2,
 .product-card h3,
 .product-card p {
@@ -229,13 +262,43 @@ button {
   width: 100%;
 }
 
+/* End product detail */
+.discount-badge {
+  background-color: crimson;
+  color: white;
+  padding: 0.25em 0.5em;
+  font-size: 0.8rem;
+  position: absolute;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: red;
+  margin-right: 0.5em;
+}
+
+.new-price {
+  color: blue;
+}
+
+.discount-info {
+  display: inline-block;
+  background-color: crimson;
+  color: white;
+  padding: 0.2em 0.5em;
+  border-radius: 5px;
+  width: 50%;
+  text-align: center;
+  transform: translate(50%);
+}
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;
-  grid-template-columns: 25% auto 15%;
+  grid-template-columns: 25% auto 15% 100px;
   font-size: var(--small-font);
-  /* max-height: 120px; */
   align-items: center;
+  width: 100%;
 }
 
 .cart-card__image {
@@ -265,7 +328,66 @@ button {
 .cart-card__price {
   grid-row: 2;
   grid-column: 3;
+  margin-right: 1rem;
+  text-align: right;
 }
+
+.cart-card__buttons {
+  grid-row: 1/3;
+  grid-column: 4;
+}
+
+.cart-footer {
+  text-align: right;
+}
+.cart-total {
+  font-size: 1.2em;
+  text-align: right;
+  margin: 1em;
+}
+
+.cart {
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: 10px;
+  right: -5px;
+  background-color: #EFA868;
+  color: #551A8B;
+  border-radius: 50%;
+  padding: 0.2em 0.45em;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.hide {
+  display: none;
+}
+
+.cart-footer {
+  margin-top: 1rem;
+  padding: 1rem;
+  text-align: right;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Alert styles*/
+
+.alert-list {
+  margin: 1rem;
+}
+
+.alert-list p {
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
 
 @media screen and (min-width: 500px) {
   body {
@@ -279,7 +401,7 @@ button {
 
   .cart-card {
     font-size: inherit;
-    grid-template-columns: 150px auto 15%;
+    grid-template-columns: 150px auto auto 100px;
   }
 }
 
