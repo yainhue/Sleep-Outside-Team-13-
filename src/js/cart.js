@@ -22,6 +22,17 @@ function renderCartContents() {
 }
 
 function cartItemTemplate(item, quantities) {
+
+  const cartItems = getLocalStorage("so-cart");
+  const index = cartItems.findIndex(item => item.Id === this.product.Id);
+  const qty = 1
+
+  // The quantities array stores pairs of product ID and quantity, so we find the index of the product ID and then update the quantity at the next index.
+  if (index !== -1) {
+    qty = quantities[index * 2 + 1] += 1;
+
+  }
+
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
@@ -33,7 +44,7 @@ function cartItemTemplate(item, quantities) {
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: ${quantities[item.Id * 2 + 1] || 1}</p>
+  <p class="cart-card__quantity">qty: ${item.qty}</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
 </li>`;
 
@@ -41,3 +52,5 @@ function cartItemTemplate(item, quantities) {
 }
 
 renderCartContents();
+
+// <p class="cart-card__quantity">qty: ${quantities[item.Id * 2 + 1] || 1}</p>
