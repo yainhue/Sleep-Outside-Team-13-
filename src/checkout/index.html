@@ -22,15 +22,15 @@
 
       <div class="checkout-wrapper">
 
-        <form class="checkout-form" action="#" method="post">
+        <form name="checkout" class="checkout-form" action="#" method="post">
           <h3>Checkout Information</h3>
 
           <!-- Customer Name -->
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName" required>
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="fname" required>
 
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" required>
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="lname" required>
 
           <!-- Address -->
           <label for="street">Street Address</label>
@@ -49,15 +49,17 @@
           <label for="cardNumber">Credit Card Number</label>
           <input type="text" id="cardNumber" name="cardNumber" required pattern="[0-9]{16}">
 
-          <label for="expDate">Expiration Date</label>
-          <input type="month" id="expDate" name="expDate" required>
+          <label for="expiration">Expiration Date</label>
+          <input type="text" id="expiration" name="expiration" placeholder="MM/YY" required
+            pattern="[0-9]{1,2}/[0-9]{2}">
 
-          <label for="cvv">Security Code</label>
-          <input type="text" id="cvv" name="cvv" required pattern="[0-9]{3}">
+          <label for="code">Security Code</label>
+          <input type="text" id="code" name="code" required pattern="[0-9]{3}">
 
           <!-- Button -->
-          <button type="submit" class="checkout-button">Checkout</button>
+          <button type="submit" class="checkout-button" id="checkoutSubmit">Checkout</button>
         </form>
+
 
         <div class="checkout-summary">
           <h3>Order Summary</h3>
