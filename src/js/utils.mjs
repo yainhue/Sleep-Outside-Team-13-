@@ -60,4 +60,13 @@ export async function loadHeaderFooter() {
   const footerTemplate = await loadTemplate("../partials/footer.html");
   const footerElement = document.querySelector("#footer");
   renderWithTemplate(footerTemplate, footerElement);
+
+  // the cart count needs to be updated on page load in case there are items in the cart already.
+  // 
+  // Get the current cart items from local storage
+  const cartItems = getLocalStorage("so-cart") || [];
+  // Update the cart counter
+  const cartCount = document.querySelector(".cart-count");
+  const totalItems = cartItems.reduce((total, item) => total + item.qty, 0);
+  cartCount.textContent = totalItems;
 }

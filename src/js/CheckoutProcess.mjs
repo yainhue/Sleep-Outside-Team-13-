@@ -98,6 +98,9 @@ export default class CheckoutProcess {
 
         try {
             const response = await services.checkout(order);
+            // if the response is successful, clear the cart and redirect to the confirmation page
+            localStorage.removeItem("so-cart");
+            window.location.href = "success.html";
             console.log(response);
         } catch (err) {
             console.log(err);

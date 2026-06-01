@@ -49,6 +49,19 @@ export default class ProductDetails {
 
     // Save the updated cart items to local storage
     setLocalStorage("so-cart", cartItems);
+
+    // Animation for adding to cart
+    const cartIcon = document.querySelector(".cart-icon");
+    cartIcon.classList.add("bounce");
+    // once the animations ends, remove it so it can be triggered again on the next click
+    cartIcon.addEventListener("animationend", () => {
+      cartIcon.classList.remove("bounce");
+    });
+
+    // Update the cart counter
+    const cartCount = document.querySelector(".cart-count");
+    const totalItems = cartItems.reduce((total, item) => total + item.qty, 0);
+    cartCount.textContent = totalItems;
   }
 
   renderProductDetails() {
