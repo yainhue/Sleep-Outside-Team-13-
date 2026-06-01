@@ -15,11 +15,9 @@ function renderCartContents() {
   // add up the total price of the items in the cart and display it
   cartTotalDisplay.classList.add("cart-total-open");
   let cartTotalCounter = 0;
-  cartItems.forEach(item => {
-
+  cartItems.forEach((item) => {
     // multiply the price of each item by its quantity and add it to the total counter
     cartTotalCounter += item.FinalPrice * item.qty;
-
   });
   cartTotalAmount.textContent = cartTotalCounter.toFixed(2);
 }
